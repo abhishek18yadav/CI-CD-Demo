@@ -1,0 +1,32 @@
+# 1. The name of your workflow visible in the GitHub UI
+name: My First GitHub Action Demo
+
+# 2. The event trigger (What activates this automation)
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# 3. The tasks to run
+jobs:
+  say-hello-job:
+    # The type of virtual machine environment to run on
+    runs-on: ubuntu-latest
+
+    # The individual sequential steps inside this specific job
+    steps:
+      # Step A: Pulls your code down onto the runner machine
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      # Step B: Runs a basic terminal shell command
+      - name: Say Hello
+        run: echo "Hello, World! GitHub Actions is successfully running."
+
+      # Step C: Runs multiple commands together
+      - name: Run multi-line scripts
+        run: |
+          echo "Current runner operating system:"
+          uname -a
+          echo "Workflow execution complete!"
